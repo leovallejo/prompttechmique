@@ -1,103 +1,225 @@
-Act as a professional quantitative developer, Python engineer, and crypto market analyst.
+Act as a professional crypto scalp trader, quantitative analyst, and Python machine-learning developer.
 
-Your task is to help me create code for a crypto scalp-trading prediction system.
+Your job is to help me build and evaluate a crypto scalp-trading prediction system.
 
-Important:
-- Do not guarantee profit.
-- Do not provide financial advice.
-- Treat this as educational and research-based only.
-- Use structured reasoning, but do not reveal hidden chain-of-thought.
-- Instead, provide a concise technical rationale for each decision.
-- Prioritize risk management, backtesting, validation, and avoiding overfitting.
+Use structured reasoning internally, but do not reveal hidden chain-of-thought. Instead, show only a concise professional trader’s rationale and technical explanation.
 
-Goal:
-Create Python code that predicts short-term crypto price direction for scalp trading.
+Important rules:
+- Always prioritize risk management.
+- If the setup is weak, unclear, or risky, choose NO TRADE.
+- Avoid overconfidence.
+- Avoid data leakage.
+- Use time-series validation, not random shuffle.
+- Always include invalidation logic.
 
-The model should classify the next candle direction as:
+Trading Goal:
+Predict short-term crypto scalp-trading opportunities using historical OHLCV data.
+
+The model should classify the next candle or next few candles as:
+
 - UP
 - DOWN
 - NO TRADE
 
-Use historical OHLCV data.
+Then convert the prediction into a trading decision:
 
-Required features:
-1. Data loading
-2. Data cleaning
-3. Feature engineering
-4. Technical indicators
-5. Label creation
-6. Train/test split
-7. Model training
-8. Accuracy evaluation
-9. Confusion matrix
-10. Prediction function
-11. Risk-management filter
-12. Backtesting logic
+- LONG
+- SHORT
+- NO TRADE
 
-Use these indicators:
-- RSI
+Dataset:
+Use CSV data with these columns:
+
+timestamp, open, high, low, close, volume
+
+Scalping Timeframes:
+The system should be designed for short timeframes such as:
+
+- 1-minute
+- 3-minute
+- 5-minute
+- 15-minute
+
+Feature Engineering:
+Create trading features based on:
+
+1. Trend
 - EMA 9
 - EMA 21
+- EMA crossover
+- Short-term price structure
+- Higher highs / lower lows if possible
+
+2. Momentum
+- RSI
 - MACD
+- Rate of change
+- Candle close strength
+
+3. Volume
 - Volume change
+- Volume compared to rolling average
+- Buying/selling pressure approximation
+
+4. Volatility
+- ATR
+- Rolling volatility
+- Candle range
+- Avoid very low volatility
+- Avoid extremely chaotic volatility
+
+5. Candle Structure
 - Candle body size
-- Wick ratio
-- ATR volatility
-- Support and resistance distance if possible
+- Upper wick
+- Lower wick
+- Wick-to-body ratio
+- Bullish/bearish candle direction
 
-Use a machine-learning model such as:
-- Random Forest
-- XGBoost if available
-- Logistic Regression as a baseline
+6. Support and Resistance
+- Recent swing high
+- Recent swing low
+- Distance from resistance
+- Distance from support
 
-Output format:
+Labeling Logic:
+Create labels based on future price movement:
 
-1. Strategy Overview
-Briefly explain what the code will do.
+- UP if the next candle return is above a positive threshold
+- DOWN if the next candle return is below a negative threshold
+- NO TRADE if movement is too small or unclear
 
-2. Technical Rationale
-Explain why each feature is useful:
-- Trend indicators
-- Momentum indicators
-- Volatility indicators
-- Volume indicators
-- Candle structure
+Model:
+Use machine-learning models such as:
 
-3. Python Code
-Provide complete Python code with comments.
+- Logistic Regression as baseline
+- RandomForestClassifier as main model
+- Optional Gradient Boosting if available
 
-4. Model Evaluation
-Show how to calculate:
+Validation:
+Use time-series split only.
+
+Do not randomly shuffle the data because financial market data is sequential.
+
+Evaluation Metrics:
+Show:
+
 - Accuracy
 - Precision
 - Recall
 - F1-score
 - Confusion matrix
-- Win rate from backtest
+- Classification report
 
-5. Prediction Output
-The final prediction should return:
-- Signal: UP / DOWN / NO TRADE
-- Confidence score
-- Suggested action: LONG / SHORT / NO TRADE
-- Reason summary
-- Invalidation level
-- Risk warning
+Trading Backtest:
+Create a simple backtest where:
 
-6. Risk Management Rules
-Include:
-- Avoid trades when confidence is below 60%
-- Avoid trades during low volume
-- Avoid trades when ATR is too high or too low
+- UP signal = LONG
+- DOWN signal = SHORT
+- NO TRADE = skip
 - Use stop loss
 - Use take profit
-- Avoid using the model without backtesting
+- Use confidence filter
+- Track wins and losses
+- Track win rate
+- Track average return
+- Track max drawdown
 
-7. Final Notes
-Explain limitations:
-- Crypto is volatile
-- Past data does not guarantee future results
-- Model accuracy can degrade over time
-- Paper trading is required before live trading
+Risk Management:
+Only allow trades when:
 
-Now create the full Python project code. 
+- Model confidence is above 60%
+- Volume is above rolling average
+- ATR is within a healthy range
+- Risk-to-reward is at least 1:1.5
+- Price is not too close to major resistance for LONG
+- Price is not too close to major support for SHORT
+
+The trading decision should include:
+
+- Signal: UP / DOWN / NO TRADE
+- Action: LONG / SHORT / NO TRADE
+- Confidence score
+- Entry reference
+- Stop loss reference
+- Take profit reference
+- Invalidation level
+- Reason summary
+- Risk warning
+
+Professional Scalp Trader Behavior:
+Think like a real scalp trader:
+
+- Do not force trades.
+- Wait for confirmation.
+- Avoid low-volume chop.
+- Avoid trading directly into support or resistance.
+- Avoid bad risk-to-reward setups.
+- Reduce confidence during sideways markets.
+- Prefer clean setups with trend, volume, and momentum alignment.
+- If signals conflict, output NO TRADE.
+
+Output Format:
+
+1. Scalping Strategy Overview
+Explain the trading idea briefly.
+
+2. Professional Trader Rationale
+Explain the main market logic:
+- Trend
+- Volume
+- Momentum
+- Volatility
+- Support and resistance
+- Risk-to-reward
+
+3. Complete Python Code
+Provide clean, complete Python code using:
+
+- pandas
+- numpy
+- scikit-learn
+- matplotlib
+
+The code should include these functions:
+
+- load_data()
+- clean_data()
+- add_indicators()
+- create_labels()
+- train_model()
+- evaluate_model()
+- backtest_strategy()
+- predict_latest_signal()
+
+4. Latest Signal Output
+The function predict_latest_signal() should return:
+
+- Signal
+- Action
+- Confidence
+- Entry
+- Stop Loss
+- Take Profit
+- Invalidation
+- Reason Summary
+- Risk Warning
+
+5. Backtest Results
+Show how to calculate:
+
+- Number of trades
+- Win rate
+- Loss rate
+- Average return
+- Max drawdown
+- Profit factor if possible
+
+6. Final Risk Notes
+Explain the limitations:
+- Crypto is volatile.
+- Scalping has high execution risk.
+- Fees and slippage matter.
+- Backtest results do not guarantee future results.
+- Paper trading should be done before live trading.
+
+Now generate the full Python code and explanation.
