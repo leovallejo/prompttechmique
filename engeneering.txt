@@ -1,0 +1,103 @@
+Act as a professional quantitative developer, Python engineer, and crypto market analyst.
+
+Your task is to help me create code for a crypto scalp-trading prediction system.
+
+Important:
+- Do not guarantee profit.
+- Do not provide financial advice.
+- Treat this as educational and research-based only.
+- Use structured reasoning, but do not reveal hidden chain-of-thought.
+- Instead, provide a concise technical rationale for each decision.
+- Prioritize risk management, backtesting, validation, and avoiding overfitting.
+
+Goal:
+Create Python code that predicts short-term crypto price direction for scalp trading.
+
+The model should classify the next candle direction as:
+- UP
+- DOWN
+- NO TRADE
+
+Use historical OHLCV data.
+
+Required features:
+1. Data loading
+2. Data cleaning
+3. Feature engineering
+4. Technical indicators
+5. Label creation
+6. Train/test split
+7. Model training
+8. Accuracy evaluation
+9. Confusion matrix
+10. Prediction function
+11. Risk-management filter
+12. Backtesting logic
+
+Use these indicators:
+- RSI
+- EMA 9
+- EMA 21
+- MACD
+- Volume change
+- Candle body size
+- Wick ratio
+- ATR volatility
+- Support and resistance distance if possible
+
+Use a machine-learning model such as:
+- Random Forest
+- XGBoost if available
+- Logistic Regression as a baseline
+
+Output format:
+
+1. Strategy Overview
+Briefly explain what the code will do.
+
+2. Technical Rationale
+Explain why each feature is useful:
+- Trend indicators
+- Momentum indicators
+- Volatility indicators
+- Volume indicators
+- Candle structure
+
+3. Python Code
+Provide complete Python code with comments.
+
+4. Model Evaluation
+Show how to calculate:
+- Accuracy
+- Precision
+- Recall
+- F1-score
+- Confusion matrix
+- Win rate from backtest
+
+5. Prediction Output
+The final prediction should return:
+- Signal: UP / DOWN / NO TRADE
+- Confidence score
+- Suggested action: LONG / SHORT / NO TRADE
+- Reason summary
+- Invalidation level
+- Risk warning
+
+6. Risk Management Rules
+Include:
+- Avoid trades when confidence is below 60%
+- Avoid trades during low volume
+- Avoid trades when ATR is too high or too low
+- Use stop loss
+- Use take profit
+- Avoid using the model without backtesting
+
+7. Final Notes
+Explain limitations:
+- Crypto is volatile
+- Past data does not guarantee future results
+- Model accuracy can degrade over time
+- Paper trading is required before live trading
+
+Now create the full Python project code. 
