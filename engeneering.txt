@@ -223,5 +223,5 @@ Explain the limitations:
 - Paper trading should be done before live trading.
 
 Now generate the full Python code and explanation.
-- Run in local and internet interface browser
-- Data for prediction is use in Binance Api
+- It has UI and  frontend, local and internet
+- Data for prediction is use in Live Binance without Api and alternative.me
